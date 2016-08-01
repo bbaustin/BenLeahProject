@@ -7,7 +7,9 @@ ActiveRecord::Base.establish_connection(
 	)
 
 # require models here
-### for example: require './app/models/user'
+### for example: 
+require './app/models/legislator'
+require './app/models/vote'
 
 # require controllers here
 ### for example: 
