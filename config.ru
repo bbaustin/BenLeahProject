@@ -10,7 +10,7 @@ ActiveRecord::Base.establish_connection(
 ### for example: require './app/models/user'
 
 # require controllers here
-### for example: require './app/controllers/application_controller'
+### for example: 
 require './app/controllers/application_controller'
 require './app/controllers/home_controller'
 
@@ -18,3 +18,4 @@ require './app/controllers/home_controller'
 # map controllers here
 ### for example: map('/') { run HomeController  }
 map ('/') {run HomeController}
+
