@@ -1,0 +1,17 @@
+require 'bundler'
+Bundler.require :default, ENV['RACK_ENV'].to_sym
+
+ActiveRecord::Base.establish_connection(
+	:adapter => 'sqlite3', 
+	:database => 'db.sqlite3'
+	)
+
+# require models here
+### for example: require './app/models/user'
+
+# require controllers here
+### for example: require './app/controllers/application_controller'
+
+
+# map controllers here
+### for example: map('/') { run HomeController  }
