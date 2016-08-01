@@ -14,6 +14,8 @@ ActiveRecord::Base.establish_connection(
 require './app/controllers/application_controller'
 require './app/controllers/home_controller'
 
+
 # map controllers here
-### for example: 
-map('/') { run HomeController  }
+### for example: map('/') { run HomeController  }
+map ('/') {run HomeController}
+
