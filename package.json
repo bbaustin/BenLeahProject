@@ -1,0 +1,22 @@
+{
+  "name": "benleahproject",
+  "version": "1.0.0",
+  "description": "project 3",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeahNelson/BenLeahProject.git"
+  },
+  "author": "ben and leah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeahNelson/BenLeahProject/issues"
+  },
+  "homepage": "https://github.com/LeahNelson/BenLeahProject#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
