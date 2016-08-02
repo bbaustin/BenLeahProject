@@ -10,6 +10,10 @@ class HomeController < ApplicationController
     @votes.to_json
   end
 
+
+
+
+
   get '/?' do
     erb :home
   end
