@@ -30,5 +30,6 @@ class Legislator < ActiveRecord::Migration
       t.string :washington_post_id
       t.string :icpsr_id
       t.string :wikipedia_id
+    end
   end
 end

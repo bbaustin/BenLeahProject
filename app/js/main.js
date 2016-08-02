@@ -17,3 +17,10 @@ $('button').click(function(event){
     }
   });
 });
+
+
+// Leah is working here
+// ***********************************
+
+// write ajax call using govttack_id to get photo and last 3 votes
+// Create learn more button on home.erb

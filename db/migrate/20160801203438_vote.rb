@@ -5,5 +5,6 @@ class Vote < ActiveRecord::Migration
       table.string :name
       table.string :eligible
       table.string :missed
+    end
   end
 end
