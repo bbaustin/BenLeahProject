@@ -1,16 +1,31 @@
-<<<<<<< HEAD
+
 <div class="main">
   
   <div class="info">
+    <%= @leg["first_name"] %>
+    <br>
+    <%= @leg["last_name"] %>
+    <br>
+    <%= @leg["position"] %>
+    <br>
+    <%= @leg["party"] %>
+    <br>
+    <p> Twitter:  @<%= @leg["twitter"] %> </p>
+   
+    <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
 
+  </div>
+
+  <div class="photo">
+    <img src="https://www.govtrack.us/data/photos/<%= @leg["govtrack_id"] %>-200px.jpeg">
   </div>
 
 
 </div>
-=======
+
 
 <p>
 
 
 </p>
->>>>>>> af8b89dd23f5db5d95205d41d01d953c5e699932
+
