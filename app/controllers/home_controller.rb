@@ -11,12 +11,25 @@ class HomeController < ApplicationController
   end
 
 
+  get '/:govtrack_id' do |govtrack_id|
+   #  returns individual legislator
+   @leg = Legislator.find params['govtrack_id']
+   if @leg
+    # @leg.to_json
+    puts @leg
 
+    erb :results
+    else
+    {status: 'error no such legislator', message: 'no legislator found by id'}.to_json 
+   end
+  end 
 
 
   get '/?' do
     erb :home
   end
+
+
 
   post '/?' do 
     @leg_list = []
