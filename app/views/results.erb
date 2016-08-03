@@ -12,6 +12,12 @@
       <p> Twitter:  @<%= @leg["twitter"] %> </p>
       <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
     </div>
+    <img  id="pic" src="https://www.govtrack.us/data/photos/<%= @leg["govtrack_id"] %>-200px.jpeg">
+  </div>
+
+  <div id="vote-history">
+    <p id="question"></p>
+    <p id="link"></p>
   </div>
 
 
