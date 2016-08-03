@@ -1,31 +1,34 @@
 
 <div class="main">
   
-  <div class="info">
-    <%= @leg["first_name"] %>
-    <br>
-    <%= @leg["last_name"] %>
-    <br>
-    <%= @leg["position"] %>
-    <br>
-    <%= @leg["party"] %>
-    <br>
-    <p> Twitter:  @<%= @leg["twitter"] %> </p>
-   
-    <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
 
-  </div>
+  <p><h2><%= @leg["first_name"] %> <%= @leg["last_name"] %></h2></p>
 
   <div class="photo">
     <img src="https://www.govtrack.us/data/photos/<%= @leg["govtrack_id"] %>-200px.jpeg">
+    <div class="info">
+      <p><%= pos %></p>
+      <p><%= @leg["party"] %>, <%= @leg["state"] %></p>
+      <p> Twitter:  @<%= @leg["twitter"] %> </p>
+      <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
+    </div>
+  </div>
+
+
+
+
+  <div class="votingHistory">
+      <%= @vote["eligible"]%> <div class="votegraph" style='background: #419BF9; height: <%= @vote["eligible"] %>px'> &nbsp;</div> 
+      <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div> 
+  </div>
+
+  <div class="votingHistory">
+      <%= @vote["eligible"]%> <div class="votegraph" style='background: #419BF9; height: <%= @vote["eligible"] %>px'> &nbsp;</div> 
+      <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div> 
   </div>
 
 
 </div>
 
 
-<p>
-
-
-</p>
 

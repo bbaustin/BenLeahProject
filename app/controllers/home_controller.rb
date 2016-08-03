@@ -14,14 +14,23 @@ class HomeController < ApplicationController
   get '/:govtrack_id' do |govtrack_id|
    #  returns individual legislator
    @leg = Legislator.find params['govtrack_id']
-   if @leg
-    # @leg.to_json
-    puts @leg
+    begin
+      @vote = Vote.find params['govtrack_id']
+      @missed = @vote['missed']
+      @eligible = @vote['eligible']
 
-    erb :results
-    else
-    {status: 'error no such legislator', message: 'no legislator found by id'}.to_json 
-   end
+      if (@leg['position']=='sen')
+        pos = 'Senator'
+      elsif (@leg['position']=='rep')
+        pos = 'Representative'
+      else 
+        pos = 'Government Official'
+      end 
+
+      erb :results, locals: {pos: pos}
+    rescue ActiveRecord::RecordNotFound
+      {status: 'error no such legislator and or vote', message: 'no legislator found by id'}.to_json 
+    end
   end 
 
 
