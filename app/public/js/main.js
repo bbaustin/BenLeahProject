@@ -25,8 +25,7 @@ $('select').change(function(event){
 });
 // API Key: 787675d0ccec48fca8a936dc60ec27c6
 
-$('#pic').load(function() {
-  console.log("vote div loaded")
+
 
 
   // $.ajax({
@@ -57,34 +56,28 @@ $('#pic').load(function() {
     type: 'get',
     dataType: 'json',
     success: function(response) {
-      // params = window.location.href;
-      // govtrack = params.slice(-6);
+       params = window.location.href;
+       govtrack = parseInt(params.slice(-6));
       
-      // console.log(response);
-      
-      // console.log(params);
-      // console.log(govtrack);
-      // var rep = {},
-          // committee = {},
-          // role = {};
-       var match = []
-      for (var i=0; i <response.length; i++) {
-        // rep = govtrack 
-      match.push(response.objects[i].person.id);
-      
-      }
-      console.log(match);
       console.log(response);
-      // if (govtrack == rep) {
-      //   committee = response.objects[i].committee.name;
-      //   role = response.objects[i].role;
-      //   console.log(committee);
-      //   console.log(role);
-        
-      // } else 
-      //   console.log('no comittee')
-      
-      
+
+        var match = [];
+        for (var i = 0; i < response.objects.length; i++) {
+
+          if (govtrack == response.objects[i].person.id) {
+            var committee = response.objects[i].committee.name;
+            var role = response.objects[i].role;
+            var comRes = role + " of " + committee; 
+            $('.committee').append(comRes);
+            console.log(committee);
+            console.log(role);
+          } 
+          else 
+            console.log('no committee')        
+          }
+      // console.log(match);
+      // console.log(response);
+      // console.log(response.objects.length)
     },
     error: function(error) {
       console.log("error " + error);
@@ -92,7 +85,7 @@ $('#pic').load(function() {
 
   });
 
-});
+
 
 
 
