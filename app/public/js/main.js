@@ -95,6 +95,10 @@ $('#pic').load(function() {
 });
 
 
+// example of get request to google civic info api
+
+// GET https://www.googleapis.com/civicinfo/v2/representatives?address=14023+sw+151st+ave+Miami%2C+FL+33196&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&key={YOUR_API_KEY}
+
 
 // '<li><a href=' + response[i][2] + '>' + 
 // API Key: 787675d0ccec48fca8a936dc60ec27c6
