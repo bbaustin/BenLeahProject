@@ -1,3 +1,5 @@
+
+// This creates a list of every Senate member per state
 $('select').change(function(event) {  
   event.preventDefault();
 
@@ -22,8 +24,10 @@ $('select').change(function(event) {
     }
   });
 });
+///////////////////////////////////////////////////
 
 
+// These functions create a pie chart
 function votePercent() {
   var eligible = ($('.eVotes').text()).split(": ");
   eligible[1] = parseInt(eligible[1]);
@@ -48,70 +52,37 @@ function makePie() {
       "overflow": "hidden"
     });
     sheet.insertRule(".votingHistory::before { content: ''; display: block; margin-left: 50%; height: 100%; background-color: inherit;  transform-origin: left; transform: rotate(" + votePercent() + "turn);", (sheet.cssRules.length));
-
 }
 makePie();
+///////////////////////////////////////////////////
 
-console.log(document.styleSheets[1]);
 
-  // $.ajax({
-  //   url:'https://www.govtrack.us/api/v2/vote/?congress=114&order_by=-created&limit=10',
-  //   // https://www.govtrack.us/api/v2/vote
-  //   // ***** URL for 114th congress last 10 votes
-  //   type: 'get',
-  //   dataType: 'json',
-  //   // data: {
-  //   //   legislator: params[:govtrack_id]
-  //   // },
-  //   success: function(response) {
-  //     bill = response.objects[0].question;
-  //     link = response.objects[0].link;
-  //     console.log(response);
-  //     console.log(bill);
-  //     $('#question').append(bill);
-  //     $('#link').append(link);
-
-  //   },
-  //   error: function(error) {
-  //     console.log("error " + error );
-  //   }
-  // });
-
-  
-  $.ajax({
-    url: 'https://www.govtrack.us/api/v2/committee_member',
-    type: 'get',
-    dataType: 'json',
-    success: function(response) {
-      params = window.location.href;
-      govtrack = parseInt(params.slice(-6));
+// // This creates a list of a Senate member's associated committees
+//   $.ajax({
+//     url: 'https://www.govtrack.us/api/v2/committee_member',
+//     type: 'get',
+//     dataType: 'json',
+//     success: function(response) {
+//       params = window.location.href;
+//       govtrack = parseInt(params.slice(-6));
       
-      console.log(response);
-
-        
-        for (var i = 0; i < response.objects.length; i++) {
-
-          if (govtrack == response.objects[i].person.id) {
-            var committee = response.objects[i].committee.name;
-            var role = response.objects[i].role;
-            var comRes = role + " of " + committee; 
-            $('.committee').append(comRes);
-            console.log(committee);
-            console.log(role);
-          } 
-          else 
-            console.log('no committee')        
-          }
-      // console.log(match);
-      // console.log(response);
-      // console.log(response.objects.length)
-    },
-    error: function(error) {
-      console.log("error " + error);
-    }
-  });
+//       for (var i = 0; i < response.objects.length; i++) {
+//         if (govtrack == response.objects[i].person.id) {
+//           var committee = response.objects[i].committee.name;
+//           var role = response.objects[i].role;
+//           var comRes = role + " of " + committee; 
+//           $('.committee').append(comRes);
+//         }        
+//       }
+//     },
+//     error: function(error) {
+//       console.log("error " + error);
+//     }
+//   });
+// ///////////////////////////////////////////////////
 
 
+// This creates a list of a Senate member's associated committees 
 $.ajax({
   url: 'https://www.govtrack.us/api/v2/committee_member',
   type: 'get',
@@ -128,8 +99,8 @@ $.ajax({
         $('.committee').append('<li>' + comRes + '</li>');
         counter++;
       } 
-
     }
+
     if (counter === 0) {
       $('.committee').append('<li>This government official is not currently a member of any congressional committees.</li>');
     }
@@ -138,7 +109,10 @@ $.ajax({
     console.log("error " + error);
   }
 });
+///////////////////////////////////////////////////
 
+
+// This creates a list of senators associated with a user's address
 $('#submit').click(function(event) {
   event.preventDefault();
   console.log('you clicked me');
@@ -218,6 +192,8 @@ $('#submit').click(function(event) {
 
 // example of get request to google civic info api
 
+
+// This provides a list of bills that a Senate member has introduced.
 $.ajax({
   url: 'https://www.govtrack.us/api/v2/bill?sort=-introduced_date',
   type: 'get',
@@ -231,8 +207,6 @@ $.ajax({
         $('.bill').append('<li>' + response.objects[i].title + '</li>');
         $('.bill').append('<li>' + response.objects[i].introduced_date + '</li>');
         counter++;
-        console.log(counter);
-        console.log(i);
       }
     }
     if (counter === 0) {

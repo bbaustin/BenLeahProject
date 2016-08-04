@@ -48,6 +48,10 @@ h3 {
   font-size: .75em;
   list-style: none;
   margin-bottom: 1em;
+  margin-left: 0;
+}
+.eVotes {
+  color: #3296ff;
 }
 .info {
   color: ghostwhite;
