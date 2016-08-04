@@ -25,8 +25,26 @@ body {
   background-color: #bbbbbb;
   margin-left: 20px;
 }
+ 
+.pie {
+  width: 100px; 
+  height: 100px;
+  border-radius: 50%;
+  background-color: #3296ff;
+  background-image: linear-gradient(to right, transparent 50%, ghostwhite 0); // hm!
+  overflow:hidden; 
+} 
 
-
+.pie::before {
+  content: '';
+  display: block;
+  margin-left: 50%;
+  height: 100%;
+  background-color: inherit; // #3296ff
+  // here or in ::before? also acceptable--> border-radius: 0 100% 100% 0 / 50%;
+  transform-origin: 0 50%; // left also acceptable
+  transform: rotate(.1turn); // this i want to be changed per person 
+}
 
 p {
   margin: 0;
