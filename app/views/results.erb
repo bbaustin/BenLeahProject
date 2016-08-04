@@ -1,32 +1,53 @@
 
-<div class="main">
-  
+<div class="containerRow">
+  <div class="containerCol">
+    
+    <div class="bio">
+      
+      <p>
+        <h2><%= @leg["first_name"] %> <%= @leg["last_name"] %></h2>
+      </p>
 
-  <p><h2><%= @leg["first_name"] %> <%= @leg["last_name"] %></h2></p>
+      <div class="photo">
+        <img src="https://www.govtrack.us/data/photos/<%= @leg["govtrack_id"] %>-200px.jpeg">
+      </div>
+      
+      <div class="job">
+        <p><%= pos %></p>
+        <p><%= @leg["party"] %>, <%= @leg["state"] %></p>
+      </div>
 
-  <div class="photo">
-    <img src="https://www.govtrack.us/data/photos/<%= @leg["govtrack_id"] %>-200px.jpeg">
-    <div class="info">
-      <p><%= pos %></p>
-      <p><%= @leg["party"] %>, <%= @leg["state"] %></p>
-      <p> Twitter:  @<%= @leg["twitter"] %> </p>
-      <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
-      <p class="committee"></p>
+      <div class="links">
+        <img src="/img/fb2.png" />
+        <img src="/img/tw2.png" />
+        <img src="/img/ww2.png" />
+        <p> Twitter:  @<%= @leg["twitter"] %> </p>
+        <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
+      </div>
+    
     </div>
   </div>
 
-  <div class="bill-history">
-    <p class="bill-title"></p>
-    <p class="bill-date"></p>
+  <div class="containerCol">
+    <div class="info">
+        <h3>Bills Sponsored</h3>
+        <p class="bill-title"></p>
+        <p class="bill-date"></p>
+        <h3>Committees</h3>        
+        <p class="committee"></p>
+    
+        <h3>Voting History</h3>
+      <div class="votingHistory">
+        <!--   <%= @vote["eligible"]%> <div class="votegraph" style='background: #419BF9; height: <%= @vote["eligible"] %>px'> &nbsp;</div> 
+          <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div>  -->
+      </div>
+    </div>
   </div>
 
+</div>
 
 
 
-  <div class="votingHistory">
-      <%= @vote["eligible"]%> <div class="votegraph" style='background: #419BF9; height: <%= @vote["eligible"] %>px'> &nbsp;</div> 
-      <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div> 
-  </div>
 
 <!-- 
   <div class="votingHistory">
