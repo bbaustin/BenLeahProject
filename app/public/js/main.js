@@ -23,7 +23,6 @@ $('select').change(function(event){
     }
   });
 });
-// API Key: 787675d0ccec48fca8a936dc60ec27c6
 
 
 
@@ -51,6 +50,7 @@ $('select').change(function(event){
   //   }
   // });
 
+  
   $.ajax({
     url: 'https://www.govtrack.us/api/v2/committee_member',
     type: 'get',
@@ -61,7 +61,7 @@ $('select').change(function(event){
       
       console.log(response);
 
-        var match = [];
+        
         for (var i = 0; i < response.objects.length; i++) {
 
           if (govtrack == response.objects[i].person.id) {
@@ -85,8 +85,27 @@ $('select').change(function(event){
 
   });
 
+$('#submit').click(function(event){
+  event.preventDefault();
+  
+  $.ajax({
+    url: 'https://www.googleapis.com/civicinfo/v2/representatives?adress='+address+'&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&key=AIzaSyA_GuGo39tzdSFX2VHzvfdByqfzLQLxR-U'
+    type: 'get',
+    dataType: 'json',
+    data: {
+      address: $('#street').val()+$('#city').val()+$('#state').val()+$('#zip').val()
+    }
+    success: function(response) {
+      console.log(response)
 
+    },
+    error: function(error) {
+      console.log("no info" + error)
+    }
+  });
+});
 
+// Fire api call on submit of adress form
 
 // example of get request to google civic info api
 
