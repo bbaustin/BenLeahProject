@@ -1,6 +1,6 @@
 
-// This creates a list of every Senate member per state
-$('select').change(function(event) {  
+// This creates a list of every Senate member per STATE
+$('.state').change(function(event) {  
   event.preventDefault();
 
   $.ajax({
@@ -15,8 +15,8 @@ $('select').change(function(event) {
       console.log(response);
       $('p').html("");
       $('p').append('<h3>...now choose a legislator from the list below.</h3>');
-      for (var i=0; i <response.length; i++) {
-        $('p').append('<li> <a href='+response[i][2] + '>' + response[i][0] + '</a> </li>');
+      for (var i = 0; i < response.length; i++) {
+        $('p').append('<li><a href=' + response[i][2] + '>' + response[i][0] + '</a></li>');
       }
     },
     error: function(error) {
@@ -55,31 +55,6 @@ function makePie() {
 }
 makePie();
 ///////////////////////////////////////////////////
-
-
-// // This creates a list of a Senate member's associated committees
-//   $.ajax({
-//     url: 'https://www.govtrack.us/api/v2/committee_member',
-//     type: 'get',
-//     dataType: 'json',
-//     success: function(response) {
-//       params = window.location.href;
-//       govtrack = parseInt(params.slice(-6));
-      
-//       for (var i = 0; i < response.objects.length; i++) {
-//         if (govtrack == response.objects[i].person.id) {
-//           var committee = response.objects[i].committee.name;
-//           var role = response.objects[i].role;
-//           var comRes = role + " of " + committee; 
-//           $('.committee').append(comRes);
-//         }        
-//       }
-//     },
-//     error: function(error) {
-//       console.log("error " + error);
-//     }
-//   });
-// ///////////////////////////////////////////////////
 
 
 // This creates a list of a Senate member's associated committees 
@@ -126,11 +101,6 @@ $('#submit').click(function(event) {
   function lookup(address, callback) {
     var roles = ['legislatorLowerBody', 'legislatorUpperBody'];
     var levels = 'country'
-        // street = document.getElementById('street').value,
-        // city = document.getElementById('city').value,
-        // state = document.getElementById('state').value,
-        // zip = document.getElementById('zip').value,
-        // address = street + city + state + zip; 
     var req = gapi.client.request ({
       'path' : '/civicinfo/v2/representatives',
       'params' : {'roles' : roles, 'address' : address}
@@ -138,21 +108,58 @@ $('#submit').click(function(event) {
 
     req.execute(callback);
     console.log(address);
-    // return address
-
   }
 
   function renderResults (response, rawResponse) {
    $('p').html("");
    $('p').append('<h3>...now choose a legislator from the list below.</h3>');
     
-   for (var i = 0; i < response.officials.length; i++) {
-     $('p').append('<li> <a href= ' + response.officials[i].name + '>' +response.officials[i].name+ '</a> </li>'); 
-     console.log(response.officials[i].name);
-   }  
+   $.ajax({
+    url: '/',
+    type: 'post',
+    // dataType: 'json',
+    data: { 
+      state: $("select[id=state]").val() 
+    },
+    success: function(ajaxRes) {
+      console.log(typeof ajaxRes);
+      console.log(ajaxRes.length);
+      console.log(response.officials.length);
+
+        for (var j = 0; j < ajaxRes.length; j++) {
+
+      for (var i = 0; i < response.officials.length; i++) {
+          if (response.officials[i].name == ajaxRes[j][0]){  // ajaxRes[j][0] is from our database. [0] is the name.
+            console.log(ajaxRes[j][0]);
+            console.log(response.officials[i].name);
+            $('p').append('<li><a href=' + ajaxRes[j][2] + '>' + response.officials[i].name + '</a></li>'); 
+          }
+          else { 
+            console.log("FUCK")
+          }
+        }
+      }
+    },
+    error: function(error) {
+      console.log("error: " + error);
+    }
+  }); 
+
+  //  for (var i = 0; i < response.officials.length; i++) {
+  // //   for (var j = 0; j < ajaxRes.length; j++) {
+  // //     if (response.officials[i].name == ajaxRes[j][0]){
+  // //       console.log(ajaxRes[j][0]);
+  //       console.log(response.officials[i].name);
+  //     }
+  //     else 
+  //       console.log("FUCK")
+  //   }
+  // }
+
+     // console.log(response.officials[i].name);
 
 
-    console.log(response);
+    // console.log(response);
 
   }
 
@@ -163,34 +170,7 @@ $('#submit').click(function(event) {
   }
     load();
 });  
-
-// using google javascript client for API
-
-// $('#submit').click(function(event){
-//   event.preventDefault();
-  
-//   $.ajax({
-//     url: 'https://www.googleapis.com/civicinfo/v2/representatives?adress='+address+'&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&key=AIzaSyA_GuGo39tzdSFX2VHzvfdByqfzLQLxR-U',
-//     type: 'get',
-//     dataType: 'json',
-//     data: {
-//       address: $('#street').val()+$('#city').val()+$('#state').val()+$('#zip').val()
-//     },
-//     success: function(response) {
-//       console.log(response);
-//       console.log(address);
-
-//     },
-//     error: function(error) {
-//       console.log("no info" + error)
-//     }
-//   });
-// });
-
-// Fire api call on submit of adress form
-
-
-// example of get request to google civic info api
+///////////////////////////////////////////////////
 
 
 // This provides a list of bills that a Senate member has introduced.

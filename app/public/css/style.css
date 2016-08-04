@@ -79,6 +79,17 @@ body {
   background-color: #bbbbbb;
   margin-left: 20px;
 }
+.job {
+  color: ghostwhite;
+  margin-bottom: 2em;
+}
+.links {
+  margin-bottom: 2em;
+}
+.links img {
+  padding-left: 5px;
+  margin-right: 5px;
+}
 p {
   margin: 0;
 }
