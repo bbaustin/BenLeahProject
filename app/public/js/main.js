@@ -111,56 +111,28 @@ $('#submit').click(function(event) {
   }
 
   function renderResults (response, rawResponse) {
-   $('p').html("");
-   $('p').append('<h3>...now choose a legislator from the list below.</h3>');
+    $('p').html("");
+    $('p').append('<h3>...now choose a legislator from the list below.</h3>');
     
-   $.ajax({
-    url: '/',
-    type: 'post',
-    // dataType: 'json',
-    data: { 
-      state: $("select[id=state]").val() 
-    },
-    success: function(ajaxRes) {
-      console.log(typeof ajaxRes);
-      console.log(ajaxRes.length);
-      console.log(response.officials.length);
-
+    $.ajax({
+      url: '/',
+      type: 'post',
+      data: { 
+        state: $("select[id=state]").val() 
+      },
+      success: function(ajaxRes) {
         for (var j = 0; j < ajaxRes.length; j++) {
-
-      for (var i = 0; i < response.officials.length; i++) {
-          if (response.officials[i].name == ajaxRes[j][0]){  // ajaxRes[j][0] is from our database. [0] is the name.
-            console.log(ajaxRes[j][0]);
-            console.log(response.officials[i].name);
-            $('p').append('<li><a href=' + ajaxRes[j][2] + '>' + response.officials[i].name + '</a></li>'); 
-          }
-          else { 
-            console.log("FUCK")
+          for (var i = 0; i < response.officials.length; i++) {
+            if (response.officials[i].name == ajaxRes[j][0]){  // ajaxRes[j][0] is from our database. [0] is the name.
+              $('p').append('<li><a href=' + ajaxRes[j][2] + '>' + response.officials[i].name + '</a></li>'); 
+            }
           }
         }
+      },
+      error: function(error) {
+        console.log("error: " + error);
       }
-    },
-    error: function(error) {
-      console.log("error: " + error);
-    }
-  }); 
-
-  //  for (var i = 0; i < response.officials.length; i++) {
-  // //   for (var j = 0; j < ajaxRes.length; j++) {
-  // //     if (response.officials[i].name == ajaxRes[j][0]){
-  // //       console.log(ajaxRes[j][0]);
-  //       console.log(response.officials[i].name);
-  //     }
-  //     else 
-  //       console.log("FUCK")
-  //   }
-  // }
-
-     // console.log(response.officials[i].name);
-
-
-    // console.log(response);
-
+    }); 
   }
 
   function load() {
