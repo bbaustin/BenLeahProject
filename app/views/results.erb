@@ -15,9 +15,9 @@
     </div>
   </div>
 
-  <div id="vote-history">
-    <p id="question"></p>
-    <p id="link"></p>
+  <div class="bill-history">
+    <p class="bill-title"></p>
+    <p class="bill-date"></p>
   </div>
 
 
@@ -28,10 +28,11 @@
       <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div> 
   </div>
 
+<!-- 
   <div class="votingHistory">
       <%= @vote["eligible"]%> <div class="votegraph" style='background: #419BF9; height: <%= @vote["eligible"] %>px'> &nbsp;</div> 
       <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div> 
-  </div>
+  </div> -->
 
 
 </div>

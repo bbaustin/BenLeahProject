@@ -86,6 +86,25 @@ $('select').change(function(event){
   });
 
 
+$.ajax({
+  url: 'https://www.govtrack.us/api/v2/bill?sort=-introduced_date',
+  type: 'get',
+  dataType: 'json',
+  success: function(response) {
+    params = window.location.href;
+    govtrack = parseInt(params.slice(-6));
+    for (var i = 0; i < response.objects.length; i++) { 
+      if (govtrack == response.objects[i].sponsor.id) {
+        $('.bill-title').append(response.objects[i].title);
+        $('.bill-date').append(response.objects[i].introduced_date);
+        console.log(i);
+      }
+    }
+  },
+  error: function(error) {
+    console.log("error " + error);
+  }
+});
 
 
 
