@@ -24,8 +24,35 @@ $('select').change(function(event) {
 });
 
 
+function votePercent() {
+  var eligible = ($('.eVotes').text()).split(": ");
+  eligible[1] = parseInt(eligible[1]);
+  
+  var missed  = ($('.mVotes').text()).split(": ");
+  missed[1] = parseInt(missed[1]);
 
+  var percent = missed[1]/eligible[1];
 
+  return percent; 
+}
+
+function makePie() {
+  var sheet = document.styleSheets[1]; 
+  $('.votingHistory').append('div')
+    .css({
+      "width": "10em",
+      "height": "10em",
+      "border-radius": "50%", 
+      "background-color": "#3296ff", 
+      "background-image": "linear-gradient(to right, transparent 50%, ghostwhite 0)",
+      "overflow": "hidden"
+    });
+    sheet.insertRule(".votingHistory::before { content: ''; display: block; margin-left: 50%; height: 100%; background-color: inherit;  transform-origin: left; transform: rotate(" + votePercent() + "turn);", (sheet.cssRules.length));
+
+}
+makePie();
+
+console.log(document.styleSheets[1]);
 
   // $.ajax({
   //   url:'https://www.govtrack.us/api/v2/vote/?congress=114&order_by=-created&limit=10',
@@ -56,8 +83,8 @@ $('select').change(function(event) {
     type: 'get',
     dataType: 'json',
     success: function(response) {
-       params = window.location.href;
-       govtrack = parseInt(params.slice(-6));
+      params = window.location.href;
+      govtrack = parseInt(params.slice(-6));
       
       console.log(response);
 
@@ -81,6 +108,9 @@ $('select').change(function(event) {
     },
     error: function(error) {
       console.log("error " + error);
+    }
+  });
+
 
 $.ajax({
   url: 'https://www.govtrack.us/api/v2/committee_member',
