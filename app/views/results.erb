@@ -18,11 +18,10 @@
       </div>
 
       <div class="links">
-        <img src="/img/fb2.png" />
-        <img src="/img/tw2.png" />
-        <img src="/img/ww2.png" />
-        <p> Twitter:  @<%= @leg["twitter"] %> </p>
-        <p> Facebook: www.facebook.com/<%= @leg["facebook"] %> </p>
+        <a href="http://facebook.com/<%= @leg["facebook"] %>"><img src="/img/fb2.png" /></a>
+        <a href="http://twitter.com/<%= @leg["twitter"] %>"><img src="/img/tw2.png" /></a>
+        <a href="<%= @leg["url"] %>"><img src="/img/ww2.png" /></a>
+      
       </div>
     
     </div>
@@ -31,10 +30,9 @@
   <div class="containerCol">
     <div class="info">
         <h3>Bills Sponsored</h3>
-        <p class="bill-title"></p>
-        <p class="bill-date"></p>
+        <ul class="bill"></ul>
         <h3>Committees</h3>        
-        <p class="committee"></p>
+        <ul class="committee"></ul>
     
         <h3>Voting History</h3>
       <div class="votingHistory">

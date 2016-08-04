@@ -33,6 +33,22 @@ h3 {
   margin-top: 30px;
   margin-bottom: 10px;
 }
+.committee li {
+  color: ghostwhite;
+  font-size: 1em;
+  margin-left: 0;
+}
+.bill li:nth-child(odd) {
+  color: ghostwhite;
+  font-size: 1em;
+  margin-left: 0;
+}
+.bill li:nth-child(even) {
+  color: #494949;
+  font-size: .75em;
+  list-style: none;
+  margin-bottom: 1em;
+}
 .info {
   color: ghostwhite;
 }
