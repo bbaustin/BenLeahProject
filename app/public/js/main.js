@@ -85,25 +85,79 @@ $('select').change(function(event){
 
   });
 
-$('#submit').click(function(event){
+$('#submit').click(function(event) {
   event.preventDefault();
+  console.log('you clicked me');
   
-  $.ajax({
-    url: 'https://www.googleapis.com/civicinfo/v2/representatives?adress='+address+'&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&key=AIzaSyA_GuGo39tzdSFX2VHzvfdByqfzLQLxR-U'
-    type: 'get',
-    dataType: 'json',
-    data: {
-      address: $('#street').val()+$('#city').val()+$('#state').val()+$('#zip').val()
-    }
-    success: function(response) {
-      console.log(response)
+  var street = document.getElementById('street').value,
+      city = document.getElementById('city').value,
+      state = document.getElementById('state').value,
+      zip = document.getElementById('zip').value,
+      address = street + city + state + zip;   
 
-    },
-    error: function(error) {
-      console.log("no info" + error)
-    }
-  });
-});
+  function lookup(address, callback) {
+    var roles = ['legislatorLowerBody', 'legislatorUpperBody'];
+    var levels = 'country'
+        // street = document.getElementById('street').value,
+        // city = document.getElementById('city').value,
+        // state = document.getElementById('state').value,
+        // zip = document.getElementById('zip').value,
+        // address = street + city + state + zip; 
+    var req = gapi.client.request ({
+      'path' : '/civicinfo/v2/representatives',
+      'params' : {'roles' : roles, 'address' : address}
+    });
+
+    req.execute(callback);
+    console.log(address);
+    // return address
+
+  }
+
+  function renderResults (response, rawResponse) {
+   $('p').html("");
+   $('p').append('<h3>...now choose a legislator from the list below.</h3>');
+    
+   for (var i = 0; i < response.officials.length; i++) {
+     $('p').append('<li> <a href= ' + response.officials[i].name + '>' +response.officials[i].name+ '</a> </li>'); 
+     console.log(response.officials[i].name);
+   }  
+
+
+    console.log(response);
+
+  }
+
+  function load() {
+    gapi.client.setApiKey('AIzaSyA_GuGo39tzdSFX2VHzvfdByqfzLQLxR-U');
+    lookup(address, renderResults);
+    // console.log(load);
+  }
+    load();
+});  
+
+// using google javascript client for API
+
+// $('#submit').click(function(event){
+//   event.preventDefault();
+  
+//   $.ajax({
+//     url: 'https://www.googleapis.com/civicinfo/v2/representatives?adress='+address+'&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&key=AIzaSyA_GuGo39tzdSFX2VHzvfdByqfzLQLxR-U',
+//     type: 'get',
+//     dataType: 'json',
+//     data: {
+//       address: $('#street').val()+$('#city').val()+$('#state').val()+$('#zip').val()
+//     },
+//     success: function(response) {
+//       console.log(response);
+//       console.log(address);
+
+//     },
+//     error: function(error) {
+//       console.log("no info" + error)
+//     }
+//   });
+// });
 
 // Fire api call on submit of adress form
 
