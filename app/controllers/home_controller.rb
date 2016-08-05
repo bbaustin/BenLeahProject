@@ -29,8 +29,7 @@ class HomeController < ApplicationController
 
       erb :results, locals: {pos: pos}
     rescue ActiveRecord::RecordNotFound
-      erb :results, locals: {pos: ' '}
-      #{status: 'error no such legislator and or vote', message: 'no legislator found by id'}.to_json 
+      {status: 'error no such legislator and or vote', message: 'no legislator found by id'}.to_json 
     end
   end 
 
@@ -44,7 +43,6 @@ class HomeController < ApplicationController
   post '/?' do 
     @leg_list = []
     Legislator.all.each do |leg|
-      #puts leg['last_name']  <-- gives all last note. note to self -BA
       if leg['state'] === params['state']
          @leg_list.push(["#{leg['first_name']} #{leg['last_name']}", leg['state'], leg['govtrack_id']])
       elsif leg['first_name'] + leg['last_name'] == params['name']
