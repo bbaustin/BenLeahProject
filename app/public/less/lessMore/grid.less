@@ -12,6 +12,18 @@ body {
 .containerCol {
   display: flex;
   flex-direction: column;
+  padding: 20px;
+    form {
+    margin: auto;
+    margin-bottom: 24px;
+  }
+}
+
+.containerRowHome {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  text-align: center;
 }
 
 .bio {
@@ -39,13 +51,17 @@ body {
   }
 }
 
+li:last-child {
+  margin-bottom: 30px;
+}
+
 p {
   margin: 0;
 }
 
-select {
-  font-size: 2em;
-}
+// select {
+//   font-size: 2em;
+// }
 
 .photo {
   display: flex;
@@ -60,6 +76,7 @@ header {
 }
 
 .votingHistory {
+  margin-bottom: 10px;
   width: 100px; 
   height: 100px;
   border-radius: 50%;
@@ -68,14 +85,8 @@ header {
   overflow:hidden; 
 }
 
-// .votingHistory::before {
-//   content: '';
-//   display: block;
-//   margin-left: 50%;
-//   height: 100%;
-//   background-color: inherit; // #3296ff
-//   // here or in ::before? also acceptable--> border-radius: 0 100% 100% 0 / 50%;
-//   transform-origin: 0 50%; // left also acceptable
-//   transform: rotate(.1turn); // this i want to be changed per person 
-// }
-
+.containerVotes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

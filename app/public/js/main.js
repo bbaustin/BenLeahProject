@@ -6,7 +6,6 @@ $('.state').change(function(event) {
   $.ajax({
     url: '/',
     type: 'post',
-    // dataType: 'json',
     data: { 
       state: $('select[name=state]').val() 
     },
@@ -138,9 +137,7 @@ $('#submit').click(function(event) {
       'path' : '/civicinfo/v2/representatives',
       'params' : {'roles' : roles, 'address' : address}
     });
-
     req.execute(callback);
-    console.log(address);
   }
 
   function renderResults (response, rawResponse) {
@@ -171,6 +168,11 @@ $('#submit').click(function(event) {
             if (response.officials[i].name == ajaxRes[j][0]){  // ajaxRes[j][0] is from our database. [0] is the name.
               $('p').append('<li><a href=' + ajaxRes[j][2] + '>' + response.officials[i].name + '</a></li>'); 
             }
+            else {
+              console.log(response.officials[i].name);
+              console.log(ajaxRes[j][0]);
+              console.log('---------------');
+            }
           }
         }
       },
@@ -183,7 +185,6 @@ $('#submit').click(function(event) {
   function load() {
     gapi.client.setApiKey('AIzaSyA_GuGo39tzdSFX2VHzvfdByqfzLQLxR-U');
     lookup(address, renderResults);
-    // console.log(load);
   }
     load();
 });  
@@ -214,10 +215,4 @@ $.ajax({
     console.log("error " + error);
   }
 });
-
-
-// GET https://www.googleapis.com/civicinfo/v2/representatives?address=14023+sw+151st+ave+Miami%2C+FL+33196&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&key={YOUR_API_KEY}
-
-
-// '<li><a href=' + response[i][2] + '>' + 
 // API Key: 787675d0ccec48fca8a936dc60ec27c6
