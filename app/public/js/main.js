@@ -51,36 +51,36 @@ $('select').change(function(event) {
   // });
 
   
-  $.ajax({
-    url: 'https://www.govtrack.us/api/v2/committee_member',
-    type: 'get',
-    dataType: 'json',
-    success: function(response) {
-       params = window.location.href;
-       govtrack = parseInt(params.slice(-6));
+  // $.ajax({
+  //   url: 'https://www.govtrack.us/api/v2/committee_member',
+  //   type: 'get',
+  //   dataType: 'json',
+  //   success: function(response) {
+  //      params = window.location.href;
+  //      govtrack = parseInt(params.slice(-6));
       
-      console.log(response);
+  //     console.log(response);
 
         
-        for (var i = 0; i < response.objects.length; i++) {
+  //       for (var i = 0; i < response.objects.length; i++) {
 
-          if (govtrack == response.objects[i].person.id) {
-            var committee = response.objects[i].committee.name;
-            var role = response.objects[i].role;
-            var comRes = role + " of " + committee; 
-            $('.committee').append(comRes);
-            console.log(committee);
-            console.log(role);
-          } 
-          else 
-            console.log('no committee')        
-          }
-      // console.log(match);
-      // console.log(response);
-      // console.log(response.objects.length)
-    },
-    error: function(error) {
-      console.log("error " + error);
+  //         if (govtrack == response.objects[i].person.id) {
+  //           var committee = response.objects[i].committee.name;
+  //           var role = response.objects[i].role;
+  //           var comRes = role + " of " + committee; 
+  //           $('.committee').append(comRes);
+  //           console.log(committee);
+  //           console.log(role);
+  //         } 
+  //         else 
+  //           console.log('no committee')        
+  //         }
+  //     // console.log(match);
+  //     // console.log(response);
+  //     // console.log(response.objects.length)
+  //   },
+  //   error: function(error) {
+  //     console.log("error " + error);
 
 $.ajax({
   url: 'https://www.govtrack.us/api/v2/committee_member',
@@ -111,7 +111,7 @@ $.ajax({
 
 $('#submit').click(function(event) {
   event.preventDefault();
-  console.log('you clicked me');
+  // console.log('you clicked me');
   
   var street = document.getElementById('street').value,
       city = document.getElementById('city').value,
@@ -144,7 +144,10 @@ $('#submit').click(function(event) {
     
    for (var i = 0; i < response.officials.length; i++) {
      $('p').append('<li> <a href= ' + response.officials[i].name + '>' +response.officials[i].name+ '</a> </li>'); 
+     
+     
      console.log(response.officials[i].name);
+     console.log(typeof response);
    }  
 
 

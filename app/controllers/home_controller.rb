@@ -46,7 +46,7 @@ class HomeController < ApplicationController
       #puts leg['last_name']  <-- gives all last note. note to self -BA
       if leg['state'] === params['state']
          @leg_list.push(["#{leg['first_name']} #{leg['last_name']}", leg['state'], leg['govtrack_id']])
-      elsif leg['first_name'] + leg['last_name'] == params['name']
+      elsif leg['first_name'] + leg['last_name'] === params['data']
         @leg_list.push(["#{leg['first_name']} #{leg['last_name']}", leg['state'], leg['govtrack_id']])
       end
     end
