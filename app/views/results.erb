@@ -37,9 +37,10 @@
         <ul class="committee"></ul>
     
       <h3>Voting History</h3>
-        <div class="votingHistory">
-          <div class="pie" style="transform: rotate(<%= @vote["missed"] %>turn);"></div>
-        </div>
+        <div class="votingHistory"></div>
+        <p class="mVotes">Missed Votes: <%= @vote["missed"]%></p>
+        <p class="eVotes">Eligible Votes: <span style="color: #3296ff"><%= @vote["eligible"]%></span></p> 
+
     </div>
 
   </div>
@@ -47,8 +48,8 @@
 <!-- (<%= @vote["missed"] %> / (<%= @vote["eligible"] %> + <%= @vote["missed"] %>))
  -->
 
-<!-- 
-  <div class="votingHistory">
+
+ <!--  <div class="votingHistory">
       <%= @vote["eligible"]%> <div class="votegraph" style='background: #419BF9; height: <%= @vote["eligible"] %>px'> &nbsp;</div> 
       <%= @vote["missed"]%> <div class="votegraph" style='background: ghostwhite; height: <%= @vote["missed"] %>px'> &nbsp;</div> 
   </div> -->
