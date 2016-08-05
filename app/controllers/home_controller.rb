@@ -29,7 +29,8 @@ class HomeController < ApplicationController
 
       erb :results, locals: {pos: pos}
     rescue ActiveRecord::RecordNotFound
-      {status: 'error no such legislator and or vote', message: 'no legislator found by id'}.to_json 
+      erb :results, locals: {pos: ' '}
+      #{status: 'error no such legislator and or vote', message: 'no legislator found by id'}.to_json 
     end
   end 
 
